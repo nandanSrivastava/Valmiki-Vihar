@@ -1,8 +1,23 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Users } from "lucide-react";
+import { MapPin, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "./Button";
 
 const PackageCard = ({ package: pkg, index = 0, featured = false }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Use gallery array if available, otherwise fallback to single image
+  const images =
+    pkg.gallery && pkg.gallery.length > 0 ? pkg.gallery : [pkg.image];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   const variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i = 0) => ({
@@ -21,12 +36,43 @@ const PackageCard = ({ package: pkg, index = 0, featured = false }) => {
       variants={variants}
       viewport={{ once: true, margin: "-50px" }}
     >
-      <div className="w-full h-48 overflow-hidden">
+      <div className="relative w-full h-48 overflow-hidden group">
         <img
-          src={pkg.image}
+          src={images[currentImageIndex]}
           alt={pkg.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
+
+        {/* Carousel Navigation - Only show if multiple images */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/70"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/70"
+            >
+              <ChevronRight size={16} />
+            </button>
+
+            {/* Image Indicators */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImageIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                    idx === currentImageIndex ? "bg-white" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <div className="p-4">

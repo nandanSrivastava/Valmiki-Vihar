@@ -35,7 +35,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[calc(100vh-100px)] flex items-center justify-center overflow-hidden">
       {/* Background Image (Valmiki Tiger Reserve) */}
       <div className="absolute inset-0 z-0">
         <img
@@ -43,6 +43,12 @@ const Hero = () => {
           alt="Valmiki Tiger Reserve"
           className="w-full h-full object-cover"
         />
+
+        {/* very wide soft emerald band behind the content so bg color is wider than the text container */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 top-1/3 pointer-events-none">
+          <div className="w-[1400px] md:w-[1800px] lg:w-[2200px] h-60 md:h-72 lg:h-96 rounded-full bg-emerald-600/10 blur-3xl" />
+        </div>
+
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
@@ -102,11 +108,7 @@ const Hero = () => {
           animate="visible"
           className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-2 sm:space-x-6"
         >
-          <Button
-            size="lg"
-            icon
-            className="text-lg px-12 py-6 sm:px-16 sm:py-6 md:px-20 md:py-8"
-          >
+          <Button size="lg" icon className="text-lg md:text-xl">
             Explore Destinations
           </Button>
         </motion.div>

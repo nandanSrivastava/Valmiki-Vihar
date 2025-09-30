@@ -25,10 +25,7 @@ export default function Document() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://valmikivihar.com" />
-        <meta
-          property="og:image"
-          content="https://media2.thrillophilia.com/images/photos/000/373/536/original/1622526611_shutterstock_1594833985.jpg?w=753&h=450&dpr=1.0"
-        />
+        <meta property="og:image" content="/images/vtr images/vtr sunset.jpg" />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -42,7 +39,7 @@ export default function Document() {
         />
         <meta
           name="twitter:image"
-          content="https://media2.thrillophilia.com/images/photos/000/373/536/original/1622526611_shutterstock_1594833985.jpg?w=753&h=450&dpr=1.0"
+          content="/images/vtr images/vtr sunset.jpg"
         />
 
         {/* Favicon */}
@@ -54,7 +51,6 @@ export default function Document() {
         />
 
         {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

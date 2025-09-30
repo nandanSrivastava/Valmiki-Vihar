@@ -3,8 +3,7 @@ export const siteConfig = {
   description:
     "Discover the pristine wilderness and rich cultural heritage of Bihar with Valmiki Vihar - Your gateway to unforgettable adventures in Valmiki National Park.",
   url: "https://valmikivihar.com",
-  ogImage:
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  ogImage: "/images/vtr images/vtr sunset.jpg",
   links: {
     twitter: "https://twitter.com/valmikivihar",
     facebook: "https://facebook.com/valmikivihar",

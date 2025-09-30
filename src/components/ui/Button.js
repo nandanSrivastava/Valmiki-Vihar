@@ -10,23 +10,23 @@ const Button = ({
   ...props
 }) => {
   const baseClasses =
-    "inline-flex items-center justify-center gap-3 select-none rounded-full font-medium transition transform duration-150 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-offset-2";
+    "relative inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 whitespace-nowrap";
 
   const variants = {
     primary:
-      "text-white bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 shadow-md hover:shadow-lg focus-visible:ring-emerald-400",
+      "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-md hover:shadow-lg focus:ring-emerald-500 border-0",
     secondary:
-      "bg-white text-emerald-700 border border-emerald-200 hover:bg-emerald-50 shadow-sm focus-visible:ring-emerald-300",
+      "bg-white hover:bg-gray-50 text-emerald-600 hover:text-emerald-700 border border-emerald-200 hover:border-emerald-300 shadow-sm focus:ring-emerald-500",
     outline:
-      "bg-transparent text-white border border-white hover:bg-white/10 focus-visible:ring-white",
+      "bg-transparent hover:bg-white/10 text-white hover:text-white border-2 border-white hover:border-white shadow-sm focus:ring-white",
     ghost:
-      "bg-transparent text-emerald-600 hover:bg-emerald-50 focus-visible:ring-emerald-300",
+      "bg-transparent hover:bg-emerald-50 text-emerald-600 hover:text-emerald-700 border-0 focus:ring-emerald-500",
   };
 
   const sizes = {
-    sm: "px-4 py-1.5 text-sm",
-    md: "px-6 py-2 text-sm md:text-base",
-    lg: "w-full md:w-auto px-8 md:px-10 py-3 text-lg",
+    sm: "p-4 px-6 py-4 text-sm rounded gap-1.5",
+    md: "p-4 px-8 py-4 text-base rounded gap-2",
+    lg: "p-4 px-10 py-4 text-lg rounded gap-2.5",
   };
 
   const combinedClasses = `${baseClasses} ${variants[variant] || ""} ${
@@ -35,19 +35,21 @@ const Button = ({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.985 }}
+      whileHover={{ y: -1 }}
+      whileTap={{ scale: 0.98 }}
       className={combinedClasses}
       {...props}
     >
-      {children}
-      {icon && (
-        <ArrowRight
-          className={children ? "ml-1" : ""}
-          size={children ? 18 : 20}
-          aria-hidden="true"
-        />
-      )}
+      <span className="flex items-center justify-center gap-inherit">
+        {children}
+        {icon && (
+          <ArrowRight
+            size={size === "sm" ? 14 : size === "lg" ? 18 : 16}
+            className="flex-shrink-0"
+            aria-hidden="true"
+          />
+        )}
+      </span>
     </motion.button>
   );
 };

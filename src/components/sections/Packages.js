@@ -58,31 +58,6 @@ const Packages = () => {
           ))}
         </motion.div>
 
-        {/* Special Offers Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-gradient-to-r from-emerald-600 to-green-600 rounded-2xl p-8 text-center text-white mb-12"
-        >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Special Offer: Early Bird Discount
-          </h3>
-          <p className="text-emerald-100 mb-6 max-w-2xl mx-auto">
-            Book your tour package 30 days in advance and get up to 20%
-            discount. Limited time offer valid until the end of this month!
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Button variant="outline" size="md">
-              View Offer Details
-            </Button>
-            <Button variant="secondary" size="md" icon>
-              Book Now & Save
-            </Button>
-          </div>
-        </motion.div>
-
         {/* Why Choose Our Packages */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

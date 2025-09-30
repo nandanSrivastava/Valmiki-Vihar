@@ -94,7 +94,7 @@ const About = () => {
           >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="/images/vtr images/tiger.jpg"
                 alt="Valmiki National Park Wildlife"
                 className="w-full h-96 object-cover"
               />

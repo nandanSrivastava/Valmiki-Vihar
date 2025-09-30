@@ -15,10 +15,7 @@ const Destinations = () => {
   };
 
   return (
-    <section
-      id="destinations"
-      className="relative pt-32 pb-20 bg-gray-50 overflow-hidden"
-    >
+    <section id="destinations" className="relative bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mt-6 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -34,7 +31,7 @@ const Destinations = () => {
               Destinations
             </span>
           </h2>
-          <p className="text-xl text-center text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-xl text-center text-gray-600 max-w-2xl mx-auto leading-relaxed mb-2">
             From pristine wilderness to cultural heritage sites, discover the
             hidden gems of Bihar that offer unforgettable experiences for every
             type of traveler.
@@ -47,7 +44,6 @@ const Destinations = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-8"
         >
           <Carousel items={destinations} />
         </motion.div>
@@ -64,7 +60,9 @@ const Destinations = () => {
 
 const Carousel = ({ items = [], autoPlay = true, interval = 4500 }) => {
   const [index, setIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
   const timerRef = useRef(null);
+  const imageTimerRef = useRef(null);
 
   useEffect(() => {
     if (!autoPlay) return;
@@ -74,14 +72,32 @@ const Carousel = ({ items = [], autoPlay = true, interval = 4500 }) => {
     return () => clearInterval(timerRef.current);
   }, [autoPlay, interval, items.length]);
 
+  // Auto-cycle through images within each destination
+  useEffect(() => {
+    if (
+      !items[index] ||
+      !items[index].gallery ||
+      items[index].gallery.length <= 1
+    )
+      return;
+    imageTimerRef.current = setInterval(() => {
+      setImageIndex((i) => (i + 1) % items[index].gallery.length);
+    }, 3000); // Change image every 3 seconds
+    return () => clearInterval(imageTimerRef.current);
+  }, [index, items]);
+
   const prev = () => {
     clearInterval(timerRef.current);
+    clearInterval(imageTimerRef.current);
     setIndex((i) => (i - 1 + items.length) % items.length);
+    setImageIndex(0); // Reset to first image of new destination
   };
 
   const next = () => {
     clearInterval(timerRef.current);
+    clearInterval(imageTimerRef.current);
     setIndex((i) => (i + 1) % items.length);
+    setImageIndex(0); // Reset to first image of new destination
   };
 
   if (!items || items.length === 0) return null;
@@ -89,24 +105,89 @@ const Carousel = ({ items = [], autoPlay = true, interval = 4500 }) => {
   return (
     <div className="w-full">
       <div className="relative rounded-xl overflow-hidden bg-white shadow-md">
-        <div className="w-full max-w-full h-64 md:h-96 bg-gray-200 overflow-hidden">
-          <img
-            src={items[index].image}
-            alt={items[index].name}
-            className="w-full h-full object-cover block"
-          />
+        <div className="w-full max-w-full h-64 md:h-96 bg-gray-200 overflow-hidden relative">
+          {(() => {
+            const currentDestination = items[index];
+            const displayImages =
+              currentDestination.gallery &&
+              currentDestination.gallery.length > 0
+                ? currentDestination.gallery
+                : [
+                    {
+                      image: currentDestination.image,
+                      title: currentDestination.name,
+                      description: currentDestination.description,
+                    },
+                  ];
+            const currentImageData =
+              displayImages[imageIndex % displayImages.length];
+            const currentImage = currentImageData.image || currentImageData;
 
-          {/* bottom overlay for name (safe centering) */}
+            return (
+              <>
+                <img
+                  src={currentImage}
+                  alt={`${
+                    currentImageData.title || currentDestination.name
+                  } - Image ${imageIndex + 1}`}
+                  className="w-full h-full object-cover block transition-opacity duration-500"
+                />
+
+                {/* Image counter for galleries */}
+                {displayImages.length > 1 && (
+                  <div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded-full text-sm">
+                    {imageIndex + 1} / {displayImages.length}
+                  </div>
+                )}
+              </>
+            );
+          })()}
+
+          {/* bottom overlay for current image title */}
           <div className="absolute inset-x-0 bottom-6 flex justify-center pointer-events-none">
             <div className="bg-black/60 text-white px-4 py-2 rounded-full text-lg md:text-xl font-semibold pointer-events-auto">
-              {items[index].name}
+              {(() => {
+                const currentDestination = items[index];
+                const displayImages =
+                  currentDestination.gallery &&
+                  currentDestination.gallery.length > 0
+                    ? currentDestination.gallery
+                    : [
+                        {
+                          image: currentDestination.image,
+                          title: currentDestination.name,
+                          description: currentDestination.description,
+                        },
+                      ];
+                const currentImageData =
+                  displayImages[imageIndex % displayImages.length];
+                return currentImageData.title || currentDestination.name;
+              })()}
             </div>
           </div>
         </div>
 
         <div className="p-4 md:p-6 max-w-full">
           <p className="text-gray-700 text-center leading-relaxed mb-4 max-w-4xl mx-auto">
-            {items[index].description}
+            {(() => {
+              const currentDestination = items[index];
+              const displayImages =
+                currentDestination.gallery &&
+                currentDestination.gallery.length > 0
+                  ? currentDestination.gallery
+                  : [
+                      {
+                        image: currentDestination.image,
+                        title: currentDestination.name,
+                        description: currentDestination.description,
+                      },
+                    ];
+              const currentImageData =
+                displayImages[imageIndex % displayImages.length];
+              return (
+                currentImageData.description || currentDestination.description
+              );
+            })()}
           </p>
 
           <div className="flex items-center justify-between">
