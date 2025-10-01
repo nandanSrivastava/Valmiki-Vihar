@@ -12,8 +12,8 @@ export const siteConfig = {
   },
   contact: {
     email: "info@valmikivihar.com",
-    phone: "+91 98765 43210",
-    whatsapp: "+91 98765 43210",
+    phone: "+91 70047 34909",
+    whatsapp: "+91 70047 34909",
     address: {
       street: "Valmiki National Park Road",
       city: "West Champaran",

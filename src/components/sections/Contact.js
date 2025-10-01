@@ -20,9 +20,28 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message! We will get back to you soon.");
+    // Basic validation for required fields
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Please fill in Name, Email and Message before sending.");
+      return;
+    }
+
+    // Compose WhatsApp message in a friendly template
+    const whatsappNumber = "917004734909"; // international format without +
+    const name = encodeURIComponent(formData.name);
+    const email = encodeURIComponent(formData.email);
+    const phone = encodeURIComponent(formData.phone || "N/A");
+    const userMessage = encodeURIComponent(formData.message);
+
+    const message = `Hi,%0AMy name is ${name}. I would like to connect with you for your service.%0AHere are my details:%0AEmail: ${email}%0APhone: ${phone}%0AMessage: ${userMessage}%0AThank you.`;
+
+    // Use wa.me link which opens WhatsApp app/web
+    const waUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    // Open WhatsApp in a new tab/window
+    window.open(waUrl, "_blank");
+
+    // Reset form locally
     setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
@@ -170,7 +189,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800">Phone</h4>
-                    <p className="text-gray-600">+91 98765 43210</p>
+                    <p className="text-gray-600">+91 70047 34909</p>
                     <p className="text-gray-600">+91 87654 32109</p>
                   </div>
                 </div>
@@ -226,7 +245,7 @@ const Contact = () => {
               </p>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5" />
-                <span className="font-semibold">+91 98765 00000</span>
+                <span className="font-semibold">+91 7004734909</span>
               </div>
             </div>
 

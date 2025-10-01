@@ -103,7 +103,7 @@ const FAQSection = () => {
               href="tel:+919876543210"
               className="text-emerald-600 font-medium hover:text-emerald-700 transition-colors"
             >
-              Call: +91 98765 43210
+              Call: +91 70047 34909
             </a>
           </div>
         </motion.div>

@@ -108,7 +108,12 @@ const Hero = () => {
           animate="visible"
           className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-2 sm:space-x-6"
         >
-          <Button size="lg" icon className="text-lg md:text-xl">
+          <Button
+            size="lg"
+            icon
+            className="text-lg md:text-xl"
+            onClick={scrollToSection}
+          >
             Explore Destinations
           </Button>
         </motion.div>

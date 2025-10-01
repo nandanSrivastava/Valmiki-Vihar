@@ -64,24 +64,15 @@ const Testimonials = () => {
                 "{testimonial.comment}"
               </p>
 
-              {/* User Info */}
-              <div className="flex items-center">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover mr-4"
-                />
-                <div>
-                  <h4 className="font-semibold text-gray-800">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    {testimonial.location}
-                  </p>
-                  <p className="text-xs text-emerald-600 font-medium mt-1">
-                    {testimonial.package}
-                  </p>
-                </div>
+              {/* User Info (image removed as requested) */}
+              <div className="flex flex-col">
+                <h4 className="font-semibold text-gray-800">
+                  {testimonial.name}
+                </h4>
+                <p className="text-sm text-gray-600">{testimonial.location}</p>
+                <p className="text-xs text-emerald-600 font-medium mt-1">
+                  {testimonial.package}
+                </p>
               </div>
             </motion.div>
           ))}

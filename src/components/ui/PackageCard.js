@@ -1,21 +1,46 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin } from "lucide-react";
 import Button from "./Button";
 
 const PackageCard = ({ package: pkg, index = 0, featured = false }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // Render a single image per package card. Prefer explicit pkg.image,
+  // otherwise fall back to the first item in pkg.gallery if present.
+  const image = pkg.image || (pkg.gallery && pkg.gallery[0]) || "";
 
-  // Use gallery array if available, otherwise fallback to single image
-  const images =
-    pkg.gallery && pkg.gallery.length > 0 ? pkg.gallery : [pkg.image];
+  const handleBookClick = () => {
+    try {
+      const whatsappNumber = "917004734909"; // without +
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
+      const pricing = pkg.perPerson
+        ? "Per person"
+        : pkg.groupSize
+        ? `Group: ${pkg.groupSize}`
+        : "";
 
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+      const messagePlain = `Hi,\n\nI am interested in the following package:\n\nPackage: ${
+        pkg.name
+      }\nPrice: ${pkg.price}${
+        pkg.originalPrice ? ` (Original: ${pkg.originalPrice})` : ""
+      }\nDuration: ${pkg.duration}\nDestinations: ${
+        Array.isArray(pkg.destinations)
+          ? pkg.destinations.join(", ")
+          : pkg.destinations
+      }\n${
+        pricing ? `Pricing: ${pricing}\n` : ""
+      }\nPlease get in touch with me to proceed.\n\nThank you.`;
+
+      const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        messagePlain
+      )}`;
+      window.open(waUrl, "_blank");
+    } catch (err) {
+      // fallback: open generic wa.me with package name only
+      const whatsappNumber = "917004734909";
+      const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        "Interested in package: " + pkg.name
+      )}`;
+      window.open(waUrl, "_blank");
+    }
   };
 
   const variants = {
@@ -38,41 +63,10 @@ const PackageCard = ({ package: pkg, index = 0, featured = false }) => {
     >
       <div className="relative w-full h-48 overflow-hidden group">
         <img
-          src={images[currentImageIndex]}
+          src={image}
           alt={pkg.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
-
-        {/* Carousel Navigation - Only show if multiple images */}
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={prevImage}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/70"
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-black/70"
-            >
-              <ChevronRight size={16} />
-            </button>
-
-            {/* Image Indicators */}
-            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
-              {images.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                    idx === currentImageIndex ? "bg-white" : "bg-white/50"
-                  }`}
-                />
-              ))}
-            </div>
-          </>
-        )}
       </div>
 
       <div className="p-4">
@@ -99,11 +93,19 @@ const PackageCard = ({ package: pkg, index = 0, featured = false }) => {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="text-xs text-gray-500 flex items-center">
-              <Users size={14} className="mr-1" />
-              Min 2
-            </div>
-            <Button size="sm" variant="primary" icon>
+            {/* Render per-person or group size information if provided */}
+            {pkg.perPerson && (
+              <div className="text-xs text-emerald-600 font-medium">
+                Per person
+              </div>
+            )}
+            {pkg.groupSize && (
+              <div className="text-xs text-emerald-600 font-medium">
+                Group: {pkg.groupSize}
+              </div>
+            )}
+
+            <Button size="sm" variant="primary" icon onClick={handleBookClick}>
               Book
             </Button>
           </div>

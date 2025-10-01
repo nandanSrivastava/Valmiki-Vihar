@@ -128,7 +128,7 @@ The website is fully responsive and optimized for:
 For any questions or support regarding this project:
 
 - **Email**: info@valmikivihar.com
-- **Phone**: +91 98765 43210
+- **Phone**: +91 70047 34909
 - **Website**: https://valmikivihar.com
 
 ---
