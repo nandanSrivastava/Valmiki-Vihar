@@ -2,17 +2,10 @@ import { motion } from "framer-motion";
 import { packages } from "../../data/destinations";
 import PackageCard from "../ui/PackageCard";
 import Button from "../ui/Button";
+import { PACKAGE_FEATURES, SECTION_VARIANTS } from "../../config/constants";
 
 const Packages = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
+  const containerVariants = SECTION_VARIANTS.packagesContainer;
 
   return (
     <section
@@ -66,26 +59,7 @@ const Packages = () => {
           transition={{ duration: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          {[
-            {
-              title: "Expert Local Guides",
-              description:
-                "Our experienced guides know every hidden gem and wildlife hotspot in the region.",
-              icon: "🗺️",
-            },
-            {
-              title: "All-Inclusive Packages",
-              description:
-                "No hidden costs - everything from accommodation to meals and activities included.",
-              icon: "✅",
-            },
-            {
-              title: "Flexible Itineraries",
-              description:
-                "Customize your tour based on your interests and travel preferences.",
-              icon: "🔄",
-            },
-          ].map((feature, index) => (
+          {PACKAGE_FEATURES.map((feature, index) => (
             <div key={index} className="text-center p-6">
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h4 className="text-xl font-semibold text-gray-800 mb-3">

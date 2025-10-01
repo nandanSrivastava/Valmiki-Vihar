@@ -1,3 +1,5 @@
+import { VTR_IMAGES } from "../config/images";
+
 export const testimonials = [
   {
     id: 1,
@@ -6,7 +8,7 @@ export const testimonials = [
     rating: 5,
     comment:
       "Valmiki Vihar provided an unforgettable experience! The wildlife safari was incredible, and we spotted tigers, leopards, and numerous bird species. The guides were knowledgeable and the accommodation was top-notch.",
-    image: "/images/vtr images/safari 1.jpg",
+    image: VTR_IMAGES.safari1 || "/images/vtr images/safari 1.jpg",
     package: "Wildlife Explorer Package",
   },
   {
@@ -16,7 +18,7 @@ export const testimonials = [
     rating: 5,
     comment:
       "The River & Culture Experience was perfect for our family vacation. Kids loved the boat safari, and we adults enjoyed the cultural performances and local cuisine. Highly recommended!",
-    image: "/images/vtr images/river 1.jpg",
+    image: VTR_IMAGES.river1 || "/images/vtr images/river 1.jpg",
     package: "River & Culture Experience",
   },
   {
@@ -26,7 +28,7 @@ export const testimonials = [
     rating: 4,
     comment:
       "Amazing organization and beautiful locations! The Grand Tour covered everything we wanted to see. The natural beauty of Valmiki National Park is breathtaking. Will definitely visit again.",
-    image: "/images/vtr images/vtr 1.jpg",
+    image: VTR_IMAGES.vtr1 || "/images/vtr images/vtr 1.jpg",
     package: "Valmiki Vihar Grand Tour",
   },
   {
@@ -36,7 +38,8 @@ export const testimonials = [
     rating: 5,
     comment:
       "Being from Bihar, I thought I knew all the beautiful places, but Valmiki Vihar showed me hidden gems in my own state. Professional service and great value for money!",
-    image: "/images/vtr images/valmiki asshram.jpg",
+    image:
+      VTR_IMAGES.valmikiAsshram || "/images/vtr images/valmiki asshram.jpg",
     package: "Bagaha Cultural Heritage",
   },
 ];
@@ -48,7 +51,7 @@ export const blogPosts = [
       "5 Reasons Why Valmiki National Park Should Be Your Next Destination",
     excerpt:
       "Experience thrilling jungle safaris, spot wild animals, and witness breathtaking Himalayan views in Bihar's hidden wilderness gem.",
-    image: "/images/vtr images/jungle safari.jpg",
+    image: VTR_IMAGES.jungleSafari || "/images/vtr images/jungle safari.jpg",
     author: "Travel Team",
     date: "March 15, 2024",
     readTime: "5 min read",
@@ -59,7 +62,8 @@ export const blogPosts = [
     title: "Cultural Heritage of West Champaran: A Journey Through Time",
     excerpt:
       "Explore the rich cultural tapestry and historical significance of the West Champaran district.",
-    image: "/images/vtr images/png2pdf (1)_merged-20.jpg",
+    image:
+      VTR_IMAGES.png2pdf20 || "/images/vtr images/png2pdf (1)_merged-20.jpg",
     author: "Cultural Expert",
     date: "March 10, 2024",
     readTime: "7 min read",
@@ -70,7 +74,7 @@ export const blogPosts = [
     title: "Best Time to Visit Valmiki National Park: A Complete Guide",
     excerpt:
       "Plan your perfect wildlife adventure with our comprehensive guide to seasons, weather, and stunning sunset viewing opportunities.",
-    image: "/images/vtr images/vtr sunset.jpg",
+    image: VTR_IMAGES.vtrSunset || "/images/vtr images/vtr sunset.jpg",
     author: "Wildlife Guide",
     date: "March 5, 2024",
     readTime: "6 min read",

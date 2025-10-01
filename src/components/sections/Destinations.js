@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { destinations } from "../../data/destinations";
 import Button from "../ui/Button";
+import { CAROUSEL_SETTINGS, SECTION_VARIANTS } from "../../config/constants";
 
 const Destinations = () => {
   const containerVariants = {
@@ -58,7 +59,11 @@ const Destinations = () => {
   );
 };
 
-const Carousel = ({ items = [], autoPlay = true, interval = 4500 }) => {
+const Carousel = ({
+  items = [],
+  autoPlay = CAROUSEL_SETTINGS.autoPlay,
+  interval = CAROUSEL_SETTINGS.carouselInterval,
+}) => {
   const [index, setIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const timerRef = useRef(null);
@@ -82,7 +87,7 @@ const Carousel = ({ items = [], autoPlay = true, interval = 4500 }) => {
       return;
     imageTimerRef.current = setInterval(() => {
       setImageIndex((i) => (i + 1) % items[index].gallery.length);
-    }, 3000); // Change image every 3 seconds
+    }, CAROUSEL_SETTINGS.imageSwitchInterval); // Change image every configured ms
     return () => clearInterval(imageTimerRef.current);
   }, [index, items]);
 

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { testimonials } from "../../data/content";
+import { TESTIMONIAL_STATS } from "../../config/constants";
 
 const Testimonials = () => {
   const renderStars = (rating) => {
@@ -87,12 +88,7 @@ const Testimonials = () => {
           className="bg-gradient-to-r from-emerald-600 to-green-600 rounded-2xl p-8 text-white"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: "4.9", label: "Average Rating", suffix: "/5" },
-              { number: "5000", label: "Happy Customers", suffix: "+" },
-              { number: "98", label: "Satisfaction Rate", suffix: "%" },
-              { number: "500", label: "5-Star Reviews", suffix: "+" },
-            ].map((stat, index) => (
+            {TESTIMONIAL_STATS.map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ scale: 0.8, opacity: 0 }}

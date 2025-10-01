@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send, Clock } from "lucide-react";
 import Button from "../ui/Button";
+import { CONTACT_INFO } from "../../config/constants";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const Contact = () => {
     }
 
     // Compose WhatsApp message in a friendly template
-    const whatsappNumber = "917004734909"; // international format without +
+    const whatsappNumber = CONTACT_INFO.whatsappNumber; // international format without +
     const name = encodeURIComponent(formData.name);
     const email = encodeURIComponent(formData.email);
     const phone = encodeURIComponent(formData.phone || "N/A");

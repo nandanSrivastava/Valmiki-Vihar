@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { VTR_IMAGES } from "../config/images";
 
 export default function Document() {
   return (
@@ -25,7 +26,10 @@ export default function Document() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://valmikivihar.com" />
-        <meta property="og:image" content="/images/vtr images/vtr sunset.jpg" />
+        <meta
+          property="og:image"
+          content={VTR_IMAGES.vtrSunset || "/images/vtr images/vtr sunset.jpg"}
+        />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -39,7 +43,7 @@ export default function Document() {
         />
         <meta
           name="twitter:image"
-          content="/images/vtr images/vtr sunset.jpg"
+          content={VTR_IMAGES.vtrSunset || "/images/vtr images/vtr sunset.jpg"}
         />
 
         {/* Favicon */}

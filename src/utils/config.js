@@ -1,9 +1,11 @@
+import { VTR_IMAGES } from "../config/images";
+
 export const siteConfig = {
   name: "Valmiki Vihar",
   description:
     "Discover the pristine wilderness and rich cultural heritage of Bihar with Valmiki Vihar - Your gateway to unforgettable adventures in Valmiki National Park.",
   url: "https://valmikivihar.com",
-  ogImage: "/images/vtr images/vtr sunset.jpg",
+  ogImage: VTR_IMAGES.vtrSunset || "/images/vtr images/vtr sunset.jpg",
   links: {
     twitter: "https://twitter.com/valmikivihar",
     facebook: "https://facebook.com/valmikivihar",

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Award, Users, Leaf, Heart } from "lucide-react";
+import { VTR_IMAGES } from "../../config/images";
+import { ABOUT_FEATURES } from "../../config/constants";
 
 const About = () => {
   const features = [
@@ -63,12 +65,7 @@ const About = () => {
             </p>
 
             <div className="space-y-4">
-              {[
-                "Sustainable and responsible tourism practices",
-                "Expert naturalists and cultural historians as guides",
-                "Partnerships with local communities and conservation groups",
-                "Customizable experiences for all types of travelers",
-              ].map((item, index) => (
+              {ABOUT_FEATURES.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -30 }}
@@ -94,7 +91,7 @@ const About = () => {
           >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
-                src="/images/vtr images/tiger.jpg"
+                src={VTR_IMAGES.tiger || "/images/vtr images/tiger.jpg"}
                 alt="Valmiki National Park Wildlife"
                 className="w-full h-96 object-cover"
               />

@@ -1,32 +1,15 @@
 import { motion } from "framer-motion";
 import { Play, ArrowDown } from "lucide-react";
 import Button from "../ui/Button";
+import {
+  HERO_STATS,
+  SECTION_VARIANTS,
+  GALLERY_CONFIG,
+} from "../../config/constants";
 
 const Hero = () => {
-  const textVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        delay: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
+  const textVariants = SECTION_VARIANTS.heroText;
+  const buttonVariants = SECTION_VARIANTS.heroButton;
 
   const scrollToSection = () => {
     document
@@ -54,7 +37,7 @@ const Hero = () => {
 
       {/* Floating particles animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(GALLERY_CONFIG.particleCount)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-white/20 rounded-full"
@@ -125,12 +108,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-8 border-t border-white/20"
         >
-          {[
-            { number: "5000+", label: "Happy Travelers" },
-            { number: "15+", label: "Destinations" },
-            { number: "10+", label: "Years Experience" },
-            { number: "99%", label: "Customer Satisfaction" },
-          ].map((stat, index) => (
+          {HERO_STATS.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-emerald-400 mb-2">
                 {stat.number}
