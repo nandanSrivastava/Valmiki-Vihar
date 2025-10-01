@@ -32,8 +32,8 @@ export default function Custom404() {
               Oops! Page Not Found
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              It looks like you've wandered off the beaten path. The page you're
-              looking for doesn't exist or has been moved.
+              It looks like you&apos;ve wandered off the beaten path. The page you&apos;re
+              looking for doesn&apos;t exist or has been moved.
             </p>
           </motion.div>
 

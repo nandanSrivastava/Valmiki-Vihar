@@ -51,7 +51,7 @@ const About = () => {
             </h2>
 
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              Born from a passion for Bihar's untold natural beauty, Valmiki
+              Born from a passion for Bihar&apos;s untold natural beauty, Valmiki
               Vihar has been the premier gateway to discovering the pristine
               wilderness and rich cultural heritage of West Champaran for over a
               decade.

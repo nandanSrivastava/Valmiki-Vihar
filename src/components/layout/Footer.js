@@ -76,7 +76,7 @@ const Footer = () => {
               <p className="text-gray-300 text-sm leading-relaxed">
                 Discover the pristine wilderness and rich cultural heritage of
                 Bihar with Valmiki Vihar. We create unforgettable experiences in
-                nature's lap.
+                nature&apos;s lap.
               </p>
               <div className="flex space-x-4">
                 <a

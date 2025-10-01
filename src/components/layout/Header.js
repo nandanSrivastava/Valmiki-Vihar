@@ -49,7 +49,7 @@ const Header = () => {
               className="mt-1 text-sm sm:text-base md:text-lg font-medium text-black/90"
               style={{ fontFamily: "sans-serif" }}
             >
-              "किफायती यात्रा, शानदार अनुभव"
+              &quot;किफायती यात्रा, शानदार अनुभव&quot;
             </p>
             <p className="mt-1 text-xs md:text-sm font-semibold italic tracking-wide">
               PLAN YOUR TRIP WITH US

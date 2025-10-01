@@ -29,7 +29,7 @@ const Blog = () => {
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Discover insider tips, travel guides, and inspiring stories
-                about Valmiki National Park and Bihar's hidden gems.
+                about Valmiki National Park and Bihar&apos;s hidden gems.
               </p>
             </motion.div>
           </div>
